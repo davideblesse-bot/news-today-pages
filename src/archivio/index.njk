@@ -1,0 +1,27 @@
+---
+layout: layouts/base.njk
+title: Archivio
+description: Archivio delle storie seed del 22 marzo 2026.
+---
+<section class="page">
+  <header class="hero hero-compact">
+    <p class="eyebrow">Archivio</p>
+    <h1>Tutte le storie</h1>
+    <p class="lead">La raccolta completa degli articoli derivati dalla pagina originale, ordinati per data e categoria.</p>
+  </header>
+
+  <section class="archive-list">
+    {% for article in collections.articles %}
+    <article class="card archive-item">
+      <p class="eyebrow">{{ article.data.categoryName }} · {{ article.date | displayDate }}</p>
+      <h3><a href="{{ article.url | url }}">{{ article.data.title }}</a></h3>
+      <p>{{ article.data.excerpt }}</p>
+      <div class="story-meta">
+        {% for source in article.data.sources %}
+        <span class="tag">{{ source }}</span>
+        {% endfor %}
+      </div>
+    </article>
+    {% endfor %}
+  </section>
+</section>

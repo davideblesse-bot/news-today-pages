@@ -1,0 +1,86 @@
+---
+layout: layouts/base.njk
+title: Home
+---
+<section class="page">
+  <section class="hero">
+    <p class="eyebrow">{{ site.hero.eyebrow }}</p>
+    <h1>{{ site.hero.title }}</h1>
+    <p class="lead">{{ site.hero.lead }}</p>
+    <div class="tag-row">
+      {% for theme in site.themes %}
+      <span class="tag">{{ theme }}</span>
+      {% endfor %}
+    </div>
+    <div class="note">{{ site.hero.note }}</div>
+  </section>
+
+  <section class="grid stats-grid">
+    {% for stat in site.stats %}
+    <article class="stat">
+      <div class="stat-label">{{ stat.label }}</div>
+      <div class="stat-value">{{ stat.value }}</div>
+    </article>
+    {% endfor %}
+  </section>
+
+  <div class="section-head">
+    <h2>Temi dominanti della giornata</h2>
+    <span class="eyebrow">Panoramica</span>
+  </div>
+  <section class="grid topics-grid">
+    {% for theme in site.themes %}
+    <div class="topic">{{ theme }}</div>
+    {% endfor %}
+  </section>
+
+  <div class="section-head">
+    <h2>Notizie principali</h2>
+    <a class="eyebrow" href="{{ '/archivio/' | url }}">Vai all'archivio</a>
+  </div>
+  <section class="grid story-grid">
+    {% for article in collections.articles | featuredArticles %}
+      {% include "partials/article-card.njk" %}
+    {% endfor %}
+  </section>
+
+  <div class="section-head">
+    <h2>Come leggere la giornata</h2>
+    <span class="eyebrow">Interpretazione</span>
+  </div>
+  <section class="grid notes-grid">
+    {% for note in site.readingNotes %}
+    <article class="card">
+      <h3>{{ loop.index }}. {{ note.title }}</h3>
+      <p>{{ note.body }}</p>
+    </article>
+    {% endfor %}
+  </section>
+
+  <div class="section-head">
+    <h2>Sezioni del sito</h2>
+    <span class="eyebrow">Navigazione</span>
+  </div>
+  <section class="callout">
+    <article class="card">
+      <h3>Categorie</h3>
+      <p>Le storie sono distribuite in una struttura editoriale piu leggibile: sezioni tematiche, archivio e pagine articolo dedicate.</p>
+      <div class="tag-row">
+        {% for category in categories %}
+        <a class="tag" href="{{ ('/categorie/' + category.slug + '/') | url }}">{{ category.name }}</a>
+        {% endfor %}
+      </div>
+    </article>
+    <article class="card">
+      <h3>Fonti consultate</h3>
+      <ul class="list-plain">
+        {% for source in site.sources %}
+        <li>
+          <a href="{{ source.url }}">{{ source.name }}</a>
+          <p>{{ source.description }}</p>
+        </li>
+        {% endfor %}
+      </ul>
+    </article>
+  </section>
+</section>

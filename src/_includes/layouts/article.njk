@@ -1,0 +1,43 @@
+---
+layout: layouts/base.njk
+---
+<article class="page page-article">
+  <header class="hero hero-compact">
+    <p class="eyebrow">{{ categoryName }} · {{ date | displayDate }}</p>
+    <h1>{{ title }}</h1>
+    <p class="lead">{{ excerpt }}</p>
+    {% if sources %}
+    <div class="tag-row">
+      {% for source in sources %}
+      <span class="tag">{{ source }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </header>
+
+  <div class="article-layout">
+    <div class="prose card">
+      {{ content | safe }}
+    </div>
+    <aside class="sidebar">
+      <section class="card">
+        <h2>Dettagli</h2>
+        <dl class="meta-list">
+          <div>
+            <dt>Categoria</dt>
+            <dd><a href="{{ ('/categorie/' + category + '/') | url }}">{{ categoryName }}</a></dd>
+          </div>
+          <div>
+            <dt>Pubblicata</dt>
+            <dd>{{ date | displayDate }}</dd>
+          </div>
+        </dl>
+      </section>
+      <section class="card">
+        <h2>Archivio</h2>
+        <p>Consulta la raccolta completa delle storie seed del giorno.</p>
+        <a class="text-link" href="{{ '/archivio/' | url }}">Apri l'archivio</a>
+      </section>
+    </aside>
+  </div>
+</article>

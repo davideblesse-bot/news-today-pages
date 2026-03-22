@@ -1,0 +1,13 @@
+{
+  "name": "notizie-di-oggi",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sito news multi-pagina costruito con Eleventy e compatibile con GitHub Pages.",
+  "scripts": {
+    "dev": "npx @11ty/eleventy --serve",
+    "build": "npx @11ty/eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.2"
+  }
+}

@@ -1,0 +1,25 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: categories
+  size: 1
+  alias: category
+permalink: "/categorie/{{ category.slug }}/index.html"
+eleventyComputed:
+  title: "{{ category.name }}"
+  description: "{{ category.deck }}"
+---
+<section class="page">
+  <header class="hero hero-compact">
+    <p class="eyebrow">Categoria</p>
+    <h1>{{ category.name }}</h1>
+    <p class="lead">{{ category.deck }}</p>
+  </header>
+
+  {% set categoryArticles = collections.articles | articlesByCategory(category.key) %}
+  <section class="grid story-grid">
+    {% for article in categoryArticles %}
+      {% include "partials/article-card.njk" %}
+    {% endfor %}
+  </section>
+</section>
